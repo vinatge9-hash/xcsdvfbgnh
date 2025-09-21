@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang='en'>
+<head>
+  <meta charset='utf-8'>
+  <meta name='viewport' content='width=device-width, initial-scale=1'>
+  <title>NIyantri Coffee - Checkout</title>
+  <meta name='description' content='Checkout with a mock PayPal flow for NIyantri.'>
+  <script src='https://cdn.tailwindcss.com'></script>
+</head>
+<body class='opacity-0 transition-all duration-700'>
+  <header class='bg-white shadow-md fixed w-full z-40'>
+    <nav class='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8' aria-label='Top'>
+      <div class='flex items-center justify-between h-16'>
+        <a href='index.html' class='text-2xl font-bold text-yellow-700'>NIyantri</a>
+        <div class='hidden md:flex items-center space-x-6'>
+          <a href='index.html' class='text-gray-700 hover:text-yellow-600 transition-all duration-300'>Home</a>
+          <a href='about.html' class='text-gray-700 hover:text-yellow-600 transition-all duration-300'>About</a>
+          <a href='contact.html' class='text-gray-700 hover:text-yellow-600 transition-all duration-300'>Contact</a>
+          <a href='cart.html' class='text-gray-700 hover:text-yellow-600 transition-all duration-300'>Cart</a>
+          <a href='checkout.html' class='bg-yellow-500 text-white px-4 py-2 rounded hover:bg-yellow-600 transition-all duration-300'>Checkout</a>
+        </div>
+        <button id='navToggle' aria-label='Toggle navigation' class='md:hidden text-gray-700'>
+          <svg xmlns='http://www.w3.org/2000/svg' class='h-6 w-6' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
+            <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M4 6h16M4 12h16M4 18h16' />
+          </svg>
+        </button>
+      </div>
+    </nav>
+  </header>
+  <main class='max-w-5xl mx-auto px-4 py-16'>
+    <h1 class='text-3xl font-bold mb-6'>Checkout</h1>
+    <section id='orderSummary' aria-label='Order Summary' class='bg-white rounded-lg shadow p-4 mb-6'>
+      <h2 class='font-semibold mb-2'>Order Summary</h2>
+      <div id='summaryList' class='space-y-2 text-sm text-gray-700'></div>
+      <div class='border-t mt-2 pt-2 flex justify-between'>
+        <span class='font-semibold'>Total</span>
+        <span id='grandTotal' class='font-semibold'>$0.00</span>
+      </div>
+    </section>
+    <section id='payment' aria-label='Payment' class='bg-white rounded-lg shadow p-4'>
+      <h2 class='font-semibold mb-3'>Payment</h2>
+      <div class='mb-3'>Choose a payment method. This is a mock PayPal flow.</div>
+      <div class='flex items-center gap-3'>
+        <button id='payPalBtn' class='px-4 py-2 bg-yellow-500 text-white rounded hover:bg-yellow-600 transition-all duration-300'>Pay with PayPal</button>
+        <span id='payStatus' class='text-sm text-gray-600'>Awaiting payment</span>
+      </div>
+    </section>
+  </main>
+  <footer class='bg-gray-900 text-gray-100'>
+    <div class='max-w-7xl mx-auto px-4 py-12 grid grid-cols-1 md:grid-cols-3 gap-8'>
+      <div>
+        <h4 class='text-lg font-semibold mb-2'>NIyantri Coffee</h4>
+        <p class='text-sm text-gray-400'>Nadargul, Telangana, India</p>
+      </div>
+      <div>
+        <h5 class='text-sm uppercase mb-2 tracking-wider'>Quick Links</h5>
+        <ul class='space-y-2 text-sm'>
+          <li><a href='index.html' class='hover:text-yellow-400 transition-all duration-300'>Home</a></li>
+          <li><a href='cart.html' class='hover:text-yellow-400 transition-all duration-300'>Cart</a></li>
+          <li><a href='checkout.html' class='hover:text-yellow-400 transition-all duration-300'>Checkout</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5 class='text-sm uppercase mb-2 tracking-wider'>Newsletter</h5>
+        <form onsubmit='return false;' class='flex'>
+          <input aria-label='Email' type='email' placeholder='Your email' class='w-full px-3 py-2 rounded bg-gray-800 text-white outline-none'>
+          <button class='px-3 py-2 bg-yellow-500 text-white rounded hover:bg-yellow-600 transition-all duration-300'>Join</button>
+        </form>
+      </div>
+    </div>
+    <hr class='border-gray-700'>
+    <p class='text-center py-3 text-sm text-gray-400'>© 2025 NIyantri Coffee</p>
+  </footer>
+
+  <script>
+    window.addEventListener('load', () => { document.body.classList.remove('opacity-0'); loadSummary(); });
+    function loadSummary(){
+      const cart = JSON.parse(localStorage.getItem('niyantri_cart') || '[]');
+      const list = document.getElementById('summaryList');
+      const totalEl = document.getElementById('grandTotal');
+      let total = 0;
+      if(cart.length === 0){ list.innerHTML = '<div class="text-sm text-gray-600'>Your cart is empty</div>'; totalEl.textContent = '$0.00'; return; }
+      list.innerHTML = cart.map(it => `<div class='flex justify-between'><span>${it.name} x ${it.qty}</span><span>$${(it.price * it.qty).toFixed(2)}</span></div>`).join('');
+      total = cart.reduce((sum, it)=> sum + it.price * it.qty, 0);
+      totalEl.textContent = '$' + total.toFixed(2);
+    }
+    // Mobile nav toggle
+    const navToggle = document.getElementById('navToggle');
+    const mobileMenu = document.querySelector('header + div');
+    if(navToggle){ navToggle.addEventListener('click', ()=>{ mobileMenu?.classList.toggle('hidden'); }); }
+    // PayPal mock flow
+    document.getElementById('payPalBtn')?.addEventListener('click', ()=>{
+      const cart = JSON.parse(localStorage.getItem('niyantri_cart') || '[]');
+      const total = cart.reduce((s, i)=> s + i.price * i.qty, 0);
+      if(total <= 0){ alert('Your cart is empty.'); return; }
+      const status = document.getElementById('payStatus');
+      status.textContent = 'Processing payment...';
+      // Mock API call with delay
+      mockPayPalCharge(total).then(token => {
+        status.textContent = 'Payment successful';
+        // Clear cart after success
+        localStorage.removeItem('niyantri_cart');
+        setTimeout(() => { window.location.href = 'index.html'; }, 1500);
+      }).catch(()=>{
+        status.textContent = 'Payment failed. Try again.';
+      });
+    });
+    function mockPayPalCharge(amount){
+      return new Promise((resolve, reject)=>{
+        const delay = 1200; // 1.2s
+        setTimeout(()=>{
+          const ok = true; // mock success
+          if(ok) resolve('MOCK-PAYPAL-TOKEN-1234'); else reject();
+        }, delay);
+      });
+    }
+  </script>
+</body>
+</html>
