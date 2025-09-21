@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang='en'>
+<head>
+  <meta charset='utf-8'>
+  <meta name='viewport' content='width=device-width, initial-scale=1'>
+  <title>NIyantri Coffee House - Home</title>
+  <meta name='description' content='NIyantri is a cozy coffee shop offering online ordering with a mock PayPal checkout.'>
+  <script src='https://cdn.tailwindcss.com'></script>
+</head>
+<body class='opacity-0 transition-all duration-700'>
+  <!-- Header / Nav -->
+  <header class='bg-white shadow-md fixed w-full z-40'>
+    <nav class='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8' aria-label='Top'>
+      <div class='flex items-center justify-between h-16'>
+        <div class='flex items-center'>
+          <a href='index.html' class='text-2xl font-bold text-yellow-700'>NIyantri</a>
+        </div>
+        <div class='hidden md:flex items-center space-x-6'>
+          <a href='index.html' class='text-gray-700 hover:text-yellow-600 transition-all duration-300'>Home</a>
+          <a href='about.html' class='text-gray-700 hover:text-yellow-600 transition-all duration-300'>About</a>
+          <a href='contact.html' class='text-gray-700 hover:text-yellow-600 transition-all duration-300'>Contact</a>
+          <a href='cart.html' class='text-gray-700 hover:text-yellow-600 transition-all duration-300'>Cart</a>
+          <a href='checkout.html' class='bg-yellow-500 text-white px-4 py-2 rounded hover:bg-yellow-600 transition-all duration-300'>Checkout</a>
+        </div>
+        <button id='navToggle' aria-label='Toggle navigation' class='md:hidden text-gray-700'>
+          <svg xmlns='http://www.w3.org/2000/svg' class='h-6 w-6' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
+            <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M4 6h16M4 12h16M4 18h16' />
+          </svg>
+        </button>
+      </div>
+    </nav>
+    <!-- Mobile Menu -->
+    <div id='mobileMenu' class='md:hidden hidden px-4 pb-3'>
+      <a href='index.html' class='block py-2 text-gray-700 hover:bg-gray-100 rounded'>Home</a>
+      <a href='about.html' class='block py-2 text-gray-700 hover:bg-gray-100 rounded'>About</a>
+      <a href='contact.html' class='block py-2 text-gray-700 hover:bg-gray-100 rounded'>Contact</a>
+      <a href='cart.html' class='block py-2 text-gray-700 hover:bg-gray-100 rounded'>Cart</a>
+      <a href='checkout.html' class='block py-2 text-gray-700 hover:bg-gray-100 rounded'>Checkout</a>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class='relative bg-[url("https://pixabay.com/get/g9ebb46e93d7e784eefcd637d7da539681d966c438e1f4a0ff07298005f0abc274b162f8e01246848bd61a7c64b9c7948519f6a90707fa5706320d26760126292_640.jpg ")] bg-center bg-cover min-h-screen flex items-center justify-center'>
+    <div class='absolute inset-0 bg-black/40'></div>
+    <div class='relative z-10 text-center px-4'>
+      <h1 class='text-4xl md:text-6xl font-extrabold text-white leading-tight'>Savor Fresh Coffee<br><span class='text-yellow-300'>NIyantri</span></h1>
+      <p class='mt-4 text-white max-w-2xl mx-auto text-lg'> locally roasted, hand crafted, and brewed to elevate your day. Order online or visit us for a cozy experience. </p>
+      <div class='mt-6 flex items-center justify-center gap-4'>
+        <a href='cart.html' class='px-5 py-3 bg-yellow-500 text-white rounded shadow hover:bg-yellow-600 transition-all duration-300'>Order Now</a>
+        <a href='#menu' class='px-5 py-3 border border-white text-white rounded hover:bg-white/10 transition-all duration-300'>View Menu</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Menu Shorts -->
+  <main class='max-w-7xl mx-auto px-4 py-16' aria-label='Menu'>
+    <section id='menu' class='mb-12'>
+      <h2 class='text-2xl font-semibold mb-4'>Popular Coffees</h2>
+      <div class='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6'>
+        <!-- Card 1 -->
+        <article class='bg-white rounded-lg shadow-md hover:shadow-xl hover:scale-[1.01] transition-all duration-300 p-4 flex flex-col' aria-label='Espresso'>
+          <img src="https://images.pexels.com/photos/2767691/pexels-photo-2767691.jpeg?auto=compress&cs=tinysrgb&h=650&w=940" alt='Espresso cup' class='h-40 w-full object-cover rounded' />
+          <h3 class='mt-3 text-lg font-semibold'>Espresso</h3>
+          <p class='text-gray-600 text-sm'>Bold, rich and concentrated coffee shot</p>
+          <div class='mt-auto flex items-center justify-between'>
+            <span class='text-yellow-700 font-semibold'>$2.50</span>
+            <button class='add-to-cart px-3 py-2 bg-yellow-500 text-white rounded hover:bg-yellow-600 transition-all duration-300' data-id='espresso' data-name='Espresso' data-price='2.50'>Add to Cart</button>
+          </div>
+        </article>
+        <!-- Card 2 -->
+        <article class='bg-white rounded-lg shadow-md hover:shadow-xl hover:scale-[1.01] transition-all duration-300 p-4 flex flex-col' aria-label='Latte'>
+          <img src="https://images.unsplash.com/photo-1615713403708-9f81b9a243f2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3ODkyNDZ8MHwxfHNlYXJjaHw4fHxjcmVhbXklMjBsYXR0ZSUyMHdpdGglMjBsYXR0ZSUyMGFydCUyMGluJTIwYSUyMGNlcmFtaWMlMjBjdXB8ZW58MHwwfHx8MTc1ODQ2MDU4OXww&ixlib=rb-4.1.0&q=80&w=1080" alt='Latte cup art' class='h-40 w-full object-cover rounded' />
+          <h3 class='mt-3 text-lg font-semibold'>Latte</h3>
+          <p class='text-gray-600 text-sm'>Milk-forward with silky texture</p>
+          <div class='mt-auto flex items-center justify-between'>
+            <span class='text-yellow-700 font-semibold'>$3.50</span>
+            <button class='add-to-cart px-3 py-2 bg-yellow-500 text-white rounded hover:bg-yellow-600 transition-all duration-300' data-id='latte' data-name='Latte' data-price='3.50'>Add to Cart</button>
+          </div>
+        </article>
+        <!-- Card 3 -->
+        <article class='bg-white rounded-lg shadow-md hover:shadow-xl hover:scale-[1.01] transition-all duration-300 p-4 flex flex-col' aria-label='Cappuccino'>
+          <img src="https://pixabay.com/get/g35cfa41a028adeb6ebed014f3699cc1913cfcf2baa3604b742c781d22d632001f7c1110d7018422be881d4e5fe7b0fd4f2dc727b632638d36eea362d6bfd5e05_640.jpg" alt='Cappuccino cup' class='h-40 w-full object-cover rounded' />
+          <h3 class='mt-3 text-lg font-semibold'>Cappuccino</h3>
+          <p class='text-gray-600 text-sm'>Espresso with steamed milk and foam</p>
+          <div class='mt-auto flex items-center justify-between'>
+            <span class='text-yellow-700 font-semibold'>$3.75</span>
+            <button class='add-to-cart px-3 py-2 bg-yellow-500 text-white rounded hover:bg-yellow-600 transition-all duration-300' data-id='cappuccino' data-name='Cappuccino' data-price='3.75'>Add to Cart</button>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Testimonials (homepage) -->
+    <section class='my-12' aria-label='Testimonials'>
+      <span class='inline-block px-3 py-1 rounded-full bg-yellow-100 text-yellow-800 text-sm font-semibold'>Testimonials</span>
+      <h2 class='mt-2 text-2xl font-semibold'>What Our Guests Say</h2>
+      <div class='grid grid-cols-1 md:grid-cols-3 gap-8 mt-6'>
+        <blockquote class='bg-white rounded-lg shadow-md p-6 hover:shadow-xl hover:scale-[1.03] transition-all duration-300'>
+          <div class='text-yellow-500'>★★★★★</div>
+          <p class='mt-2 text-gray-700'>A cozy vibe with outstanding coffee. The caramel latte is a must!</p>
+          <cite class='block mt-2 not-italic font-semibold'>Arun, Mumbai</cite>
+        </blockquote>
+        <blockquote class='bg-white rounded-lg shadow-md p-6 hover:shadow-xl hover:scale-[1.03] transition-all duration-300'>
+          <div class='text-yellow-500'>★★★★★</div>
+          <p class='mt-2 text-gray-700'>Fast delivery and the order was perfect. Will reorder!</p>
+          <cite class='block mt-2 not-italic font-semibold'>Sita, Pune</cite>
+        </blockquote>
+        <blockquote class='bg-white rounded-lg shadow-md p-6 hover:shadow-xl hover:scale-[1.03] transition-all duration-300'>
+          <div class='text-yellow-500'>★★★★★</div>
+          <p class='mt-2 text-gray-700'>Love the warm beans aroma and the friendly staff.</p>
+          <cite class='block mt-2 not-italic font-semibold'>Ravi, Bengaluru</cite>
+        </blockquote>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class='bg-gray-900 text-gray-100'>
+    <div class='max-w-7xl mx-auto px-4 py-12 grid grid-cols-1 md:grid-cols-3 gap-8'>
+      <div>
+        <h4 class='text-lg font-semibold mb-2'>NIyantri Coffee</h4>
+        <p class='text-sm text-gray-400'>Nadargul, Telangana, India</p>
+        <div class='flex space-x-3 mt-3'>
+          <span class='text-yellow-500'>☕</span>
+          <span class='text-yellow-500'>We roast daily</span>
+        </div>
+      </div>
+      <div>
+        <h5 class='text-sm uppercase mb-2 tracking-wider'>Quick Links</h5>
+        <ul class='space-y-2 text-sm'>
+          <li><a href='index.html' class='hover:text-yellow-400 transition-all duration-300'>Home</a></li>
+          <li><a href='about.html' class='hover:text-yellow-400 transition-all duration-300'>About</a></li>
+          <li><a href='contact.html' class='hover:text-yellow-400 transition-all duration-300'>Contact</a></li>
+          <li><a href='cart.html' class='hover:text-yellow-400 transition-all duration-300'>Cart</a></li>
+          <li><a href='checkout.html' class='hover:text-yellow-400 transition-all duration-300'>Checkout</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5 class='text-sm uppercase mb-2 tracking-wider'>Newsletter</h5>
+        <p class='text-sm text-gray-400 mb-2'>Get updates on new blends and offers.</p>
+        <form onsubmit='return false;' class='flex'>
+          <input aria-label='Email' type='email' placeholder='Your email' class='w-full px-3 py-2 rounded-l bg-gray-800 text-white outline-none'>
+          <button class='px-3 py-2 bg-yellow-500 text-white rounded-r hover:bg-yellow-600 transition-all duration-300'>Join</button>
+        </form>
+      </div>
+    </div>
+    <hr class='border-gray-700'>
+    <p class='text-center py-3 text-sm text-gray-400'>© 2025 NIyantri Coffee • Nadargul, Telangana, India</p>
+  </footer>
+
+  <script>
+    // Basic page fade-in on load
+    window.addEventListener('load', () => {
+      document.body.classList.remove('opacity-0');
+    });
+
+    // Mobile nav toggle
+    const navToggle = document.getElementById('navToggle');
+    const mobileMenu = document.getElementById('mobileMenu');
+    if(navToggle){ navToggle.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    }); }
+
+    // Scroll reveal for sections
+    const sections = document.querySelectorAll('section, article, blockquote');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting){ entry.target.classList.add('opacity-100', 'translate-y-0'); entry.target.style.transform = 'translateY(0)'; }
+      });
+    }, { threshold: 0.1 });
+    sections.forEach(sec => {
+      sec.classList.add('opacity-0', 'translate-y-8', 'transition-all', 'duration-600');
+      observer.observe(sec);
+    });
+
+    // Cart logic (Add to Cart) - basic localStorage
+    const addButtons = document.querySelectorAll('.add-to-cart');
+    addButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const id = btn.getAttribute('data-id');
+        const name = btn.getAttribute('data-name');
+        const price = parseFloat(btn.getAttribute('data-price'));
+        let cart = JSON.parse(localStorage.getItem('niyantri_cart') || '[]');
+        const existing = cart.find(i => i.id === id);
+        if(existing){ existing.qty += 1; } else { cart.push({ id, name, price, qty: 1 }); }
+        localStorage.setItem('niyantri_cart', JSON.stringify(cart));
+        alert('Added to cart: ' + name);
+      });
+    });
+  </script>
+</body>
+</html>
